@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>fpm</title>
+    <link rel="stylesheet" href="/static/css/index.css"/>
+    <link rel="icon" href="http://res.baoz.cn/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="http://res.baoz.cn/favicon.ico"
+          type="image/x-icon"/>
+    <link rel="apple-touch-icon-precomposed"
+          href="http://res.baoz.cn/icon.png"/>
+</head>
+<body>
+<div id='img_title'>
+    <img src='/static/img/index.jpg'>
+
+    <div id='header'>
+        <img src='/static/img/logo.png'
+             style="width: 200px; height: 78px; vertical-align: middle">
+
+        <div id='header_search'>
+            <form action="/psearch" method="get">
+                <input name='module' type="text">
+            </form>
+        </div>
+    </div>
+</div>
+<div id='wrap'>
+    <div id="cen">
+        <div id="fpm_item">
+            <ul>
+                <li><a href='/' class='mgr nb'>HOME</a></li>
+                <li><a href='http://hirube.com/tagged/fpm' class='mgr nb' target="_blank">BLOG</a></li>
+                <li>FPM</li>
+                <li>API</li>
+            </ul>
+        </div>
+        <div id="fpm_modules">
+            <div id='title' style='text-align: left'>
+                ...
+            </div>
+            <div id='content'>
+
+            </div>
+        </div>
+        <div id="fpm_user">
+            <div id='user_block'>
+                <img src="/static/img/none.png"
+                     style="width:50px; height: 50px;">
+
+                <div id='user_info'>
+                    <a class="g s" href='/psignup'>Create Account</a>
+                    <a class="g s bl" href='/plogin'>Login</a>
+                </div>
+            </div>
+            <div style='margin-top: 20px'>
+                <img src='/static/img/none.png'
+                     style='width: 248px; height: 248px' id='user_big_head'>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+</div>
+<div id='footer'>
+    <div id='footer_cen'>
+        <a href='/'><img src='/static/img/logo.png' style='float: left'></a>
+        <a href='/'><img
+                src='http://4.as.baoz.cn/f/caeee826765b763b68f138ab93386e03.t180x180.jpg'
+                style='float: left'></a>
+        <ul class='hul' style='float:left'>
+            <li><a class='g' href='http://prj.baoz.cn/docs/fibjs/' target="_blank">fibjs</a></li>
+            <li><a class='g' href='http://hirube.com/tagged/fpm' target="_blank">blog</a></li>
+            <li><a class='g'>status</a></li>
+        </ul>
+    </div>
+</div>
+<script type='text/template' id='my_info'>
+    <table id='t3'>
+        <tr>
+            <td class='mgr'>Full Name</td>
+            <td class='g'><%=fullname %></td>
+        </tr>
+        <tr>
+            <td class='mgr'>Email</td>
+            <td class='g'><a class='g' href='mailto:<%=email %>'><%=email %></a></td>
+        </tr>
+        <tr>
+            <td class='mgr'>WeiBo | Twitter</td>
+            <td class='g'><a class='g' href='<%=weibo %>' target="_blank"><%=weibo %></a></td>
+        </tr>
+        <tr>
+            <td class='mgr'>Github</td>
+            <td class='g'><a class='g' href='<%=github %>' target="_blank"><%=github %></a></td>
+        </tr>
+        <tr>
+            <td class='mgr'>Home Page</td>
+            <td class='g'><a class='g' href='<%=homepage %>' target="_blank"><%=homepage %></a></td>
+        </tr>
+    </table>
+    <p class='ma g'>The modules <%=username %> publish</p>
+    <ul class='noneul'>
+        <% for (var i=0; i < publish.length; i++){%>
+        <li class='g nb'>
+            <a class='g nb'href='/pmodules/<%=publish[i]["version"][0]["modulesInfo"]["name"] %>'>
+                <%=publish[i]['version'][0]['modulesInfo']['name'] %>
+            </a>
+        </li>
+        <li class='mgr nb'>
+            <%=publish[i]['version'][0]['modulesInfo']['description'] %>
+        </li>
+        <li class='ma'></li>
+        <% } %>
+    </ul>
+    <p class='ma g'>The modules <%=username %> starred</p>
+    <ul class='noneul'>
+        <% for (var i=0; i < star.length; i++){%>
+        <li class='g nb'>
+            <a class='g nb'href='/pmodules/<%=star[i]["version"][0]["modulesInfo"]["name"] %>'>
+                <%=star[i]['version'][0]['modulesInfo']['name'] %>
+            </a>
+        </li>
+        <li class='mgr nb'>
+            <%=star[i]['version'][0]['modulesInfo']['description'] %>
+        </li>
+        <li class='ma'></li>
+        <% } %>
+    </ul>
+</script>
+</body>
+<script src="/static/js/jquery-2.1.0.min.js"></script>
+<script src="/static/js/underscore-min.js"></script>
+<script src="/static/js/backbone-min.js"></script>
+<script src="/static/js/index.js"></script>
+<script src="/static/js/profile.js"></script>
+</html>  

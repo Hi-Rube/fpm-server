@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>fpm</title>
+    <link rel="icon" href="http://res.baoz.cn/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="http://res.baoz.cn/favicon.ico"
+          type="image/x-icon"/>
+    <link rel="apple-touch-icon-precomposed"
+          href="http://res.baoz.cn/icon.png"/>
+    <link rel="stylesheet" href="/static/css/index.css"/>
+</head>
+<body>
+<div id='img_title'>
+    <img src='/static/img/index.jpg'>
+
+    <div id='header'>
+        <img src='/static/img/logo.png'
+             style="width: 200px; height: 78px; vertical-align: middle">
+
+        <div id='header_search'>
+            <form action="/psearch" method="get">
+                <input name='module' type="text">
+            </form>
+        </div>
+    </div>
+</div>
+<div id='wrap'>
+    <div id="cen">
+        <div id="fpm_item">
+            <ul>
+                <li><a href='/' class='mgr nb'>HOME</a></li>
+                <li><a href='http://hirube.com/tagged/fpm' class='mgr nb' target="_blank">BLOG</a></li>
+                <li>FPM</li>
+                <li>API</li>
+            </ul>
+        </div>
+        <div id="fpm_modules">
+            <div id='title' style='text-align: left;'>
+                <a id='title_a' class='noun'>...</a>
+                <a href="#" class="star" id='starbtn'
+                   title="click here to star/unstar this package">Star</a>
+            </div>
+            <p class='un ma'></p>
+
+            <p class='ma'></p>
+
+            <div id='content'>
+
+            </div>
+        </div>
+        <div id="fpm_user">
+            <div id='user_block'>
+                <img src="/static/img/none.png"
+                     style="width:50px; height: 50px;">
+
+                <div id='user_info'>
+                    <a class="g s" href='/psignup'>Create Account</a>
+                    <a class="g s bl" href='/plogin'>Login</a>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+</div>
+<script type='text/template' id='module_info'>
+    <p class='mgr b ma'><%=modulesInfo.description %></p>
+
+    <p class='whitebg'>$ fpm install <%=modulesInfo.name %></p>
+    <table id='t1' class='mgr'>
+        <tr>
+            <td>
+                <% if (downloads.result[0] !== 'null') { %>
+                <%=downloads.result[0] %>
+                <%} else { %>
+                0
+                <% } %>
+            </td>
+            <td>&nbsp;</td>
+            <td>downloads in the last day</td>
+        </tr>
+        <tr>
+            <td>
+                <%
+                var r = 0;
+                for (var i = 0; i < 7; i++){
+                r += parseInt(downloads.result[i]) ? parseInt(downloads.result[i]) : 0;
+                }
+                %>
+                <%=r%>
+            </td>
+            <td>&nbsp;</td>
+            <td>downloads in the last week</td>
+        </tr>
+        <tr>
+            <td>
+                <%
+                var r = 0;
+                for (var i = 0; i < 31; i++){
+                r += parseInt(downloads.result[i]) ? parseInt(downloads.result[i]) : 0;
+                }
+                %>
+                <%=r%>
+            </td>
+            <td>&nbsp;</td>
+            <td>downloads in the last month</td>
+        </tr>
+    </table>
+    <table id='t3'>
+        <tr>
+            <th>Last Publish By</th>
+            <td>
+                <div class='user'>
+                    <a class='g'>
+                        <img src='<%=authorHead %>' class='gravatar'>
+                        <a class='g' href='/pprofile/<%=authorName %>'>
+                            <%=authorName %>
+                        </a>
+                        <a class='mgr s'>
+                            at
+                            <% var d = new Date();
+                               d.setTime(parseInt(updatetime))
+                            %>
+                            <%=d.toDateString() %>
+                        </a>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>Maintainers</th>
+            <td>
+                <% if (modulesInfo.maintainers){ %>
+                <%for (var i=0; i < modulesInfo.maintainers.length; i++){%>
+                <div class='user'>
+                    <a class='g'>
+                        <img src='<%=modulesInfo.maintainers[i]["head"]%>'
+                             class='gravatar'>
+                        <a class='g'
+                           href='/pprofile/<%=modulesInfo.maintainers[i].name %>'>
+                            <%=modulesInfo.maintainers[i].name %>
+                        </a>
+                    </a>
+                </div>
+                <% }%>
+                <% }%>
+            </td>
+        </tr>
+        <tr>
+            <th>Version</th>
+            <td class='g'><%=modulesInfo.version %></td>
+        </tr>
+        <tr>
+            <th>License</th>
+            <td>
+                <% if (modulesInfo.license){ %>
+                <a class='g'
+                   href="http://opensource.org/licenses/<%=modulesInfo.license %>">
+                    <%=modulesInfo.license%>
+                </a>
+                <%}%>
+            </td>
+        </tr>
+        <tr>
+            <th>Keywords</th>
+            <td class='g'>
+                <% if (modulesInfo.keywords){ %>
+                <%=modulesInfo.keywords %>
+                <%}%>
+            </td>
+        </tr>
+        <tr>
+            <th>Repository</th>
+            <td>
+                <% if (modulesInfo.repository){ %>
+                <% if (modulesInfo.repository.url &&
+                modulesInfo.repository.type){ %>
+                <a class='g' href="<%=modulesInfo.repository.url %>"><%=modulesInfo.repository.url%></a>
+                (<%=modulesInfo.repository.type%>)
+                <%}%>
+                <%}%>
+            </td>
+        </tr>
+        <tr>
+            <th>Homepage</th>
+            <td>
+                <% if (modulesInfo.homepage){ %>
+                <a class='g' href="<%=modulesInfo.homepage %>"><%=modulesInfo.homepage%></a>
+                <%}%>
+            </td>
+        </tr>
+        <tr>
+            <th>Bugs</th>
+            <td>
+                <% if (modulesInfo.bugs && modulesInfo.bugs.url){ %>
+                <a class='g' href="<%=modulesInfo.bugs.url %>"><%=modulesInfo.bugs.url%></a>
+                <%}%>
+            </td>
+        </tr>
+        <tr>
+            <th>dependencies</th>
+            <td>
+                <ul class='hul noneul'>
+                   <% for (var d in modulesInfo.dependencies) {%>
+                        <li class='s nb'>
+                            <a class='g' href='/pmodules/<%=d%>'><%=d%>,</a>
+                        </li>
+                    <%} %>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <th>Directories</th>
+            <td>
+                <% if (modulesInfo.directories) { %>
+                <ul class='noneul'>
+                    <li class='g'>lib: <%=modulesInfo.directories.lib || ' none'%>
+                    </li>
+                    <li class='g'>bin: <%=modulesInfo.directories.bin || ' none'%>
+                    </li>
+                    <li class='g'>man: <%=modulesInfo.directories.man || ' none'%>
+                    </li>
+                    <li class='g'>doc: <%=modulesInfo.directories.doc || ' none'%>
+                    </li>
+                    <li class='g'>example: <%=modulesInfo.directories.example || ' none'%>
+                    </li>
+                </ul>
+                <% } else { %>
+                <%=none%>
+                <% } %>
+            </td>
+        </tr>
+        <tr>
+            <th>Starred by(<%=starreduser.length %>)</th>
+            <td>
+                <% for (var i=0; i < (starreduser.length < 60 ?
+                starreduser.length : 60); i++) {%>
+                <a class='g' href='/pprofile/<%=starreduser[i] %>'><%=starreduser[i]
+                    %></a>
+                <% }%>
+                <% if (starreduser.length>60) {%>
+                <%='<a class="g">| and '+(starreduser.length-60)+' more</a>' %>
+                <%}%>
+            </td>
+        </tr>
+    </table>
+    <div class='g' id='readme_title'>Read Me</div>
+    <div id='readme'>
+    </div>
+</script>
+<div id='footer'>
+    <div id='footer_cen'>
+        <a href='/'><img src='/static/img/logo.png' style='float: left'></a>
+        <a href='/'><img
+                src='http://4.as.baoz.cn/f/caeee826765b763b68f138ab93386e03.t180x180.jpg'
+                style='float: left'></a>
+        <ul class='hul' style='float:left'>
+            <li><a class='g' href='http://prj.baoz.cn/docs/fibjs/' target="_blank">fibjs</a></li>
+            <li><a class='g' href='http://hirube.com/tagged/fpm' target="_blank">blog</a></li>
+            <li><a class='g'>status</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+<script src="/static/js/jquery-2.1.0.min.js"></script>
+<script src="/static/js/underscore-min.js"></script>
+<script src="/static/js/backbone-min.js"></script>
+<script src='/static/js/showdown.js'></script>
+<script src="/static/js/index.js"></script>
+<script src="/static/js/modules.js"></script>
+</html>  

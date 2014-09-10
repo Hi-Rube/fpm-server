@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>fpm</title>
+    <link rel="stylesheet" href="/static/css/index.css"/>
+    <link rel="icon" href="http://res.baoz.cn/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="http://res.baoz.cn/favicon.ico"
+          type="image/x-icon"/>
+    <link rel="apple-touch-icon-precomposed"
+          href="http://res.baoz.cn/icon.png"/>
+</head>
+<body>
+<div id='img_title'>
+    <img src='/static/img/index.jpg'>
+
+    <div id='header'>
+        <img src='/static/img/logo.png'
+             style="width: 200px; height: 78px; vertical-align: middle">
+
+        <div id='header_search'>
+            <form action="/psearch" method="get">
+                <input name='module' type="text">
+            </form>
+        </div>
+    </div>
+</div>
+<div id='wrap'>
+    <div id="cen">
+        <div id="fpm_item">
+            <ul>
+                <li><a href='/' class='mgr nb'>HOME</a></li>
+                <li><a href='http://hirube.com/tagged/fpm' class='mgr nb' target="_blank">BLOG</a></li>
+                <li><a href='http://baoz.me/fibjs' class='mgr nb' target="_blank">FAQ</a></li>
+                <li>FPM</li>
+                <li>API</li>
+            </ul>
+        </div>
+        <div id="fpm_modules">
+            <div id='title'>
+                Fibjs Packaged Modules
+            </div>
+            <div id='content'>
+
+            </div>
+        </div>
+        <div id="fpm_user">
+            <div id='user_block'>
+                <img src="/static/img/none.png"
+                     style="width:50px; height: 50px;">
+
+                <div id='user_info'>
+                    <a class="g s" href='/psignup'>Create Account</a>
+                    <a class="g s bl" href='/plogin'>Login</a>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+</div>
+<div id='footer'>
+    <div id='footer_cen'>
+        <a href='/'><img src='/static/img/logo.png' style='float: left'></a>
+        <a href='/'><img
+                src='http://4.as.baoz.cn/f/caeee826765b763b68f138ab93386e03.t180x180.jpg'
+                style='float: left'></a>
+        <ul class='hul' style='float:left'>
+            <li><a class='g' href='http://prj.baoz.cn/docs/fibjs/' target="_blank">fibjs</a></li>
+            <li><a class='g' href='http://hirube.com/tagged/fpm' target="_blank">blog</a></li>
+            <li><a class='g'>status</a></li>
+        </ul>
+    </div>
+</div>
+<script type='text/template' id='websiteInfo'>
+    <p class='dgr ma'>Total Packages: <%=allPackages.result %></p>
+    <table id='t1' class='mgr'>
+        <tr>
+            <td>
+                <% if (allDownloads.result[0] !== 'null') { %>
+                <%=allDownloads.result[0] %>
+                <%} else { %>
+                0
+                <% } %>
+            </td>
+            <td>&nbsp;</td>
+            <td>downloads in the last day</td>
+        </tr>
+        <tr>
+            <td>
+                <%
+                var r = 0;
+                for (var i = 0; i < 7; i++){
+                r += parseInt(allDownloads.result[i]) ? parseInt(allDownloads.result[i]) : 0;
+                }
+                %>
+                <%=r%>
+            </td>
+            <td>&nbsp;</td>
+            <td>downloads in the last week</td>
+        </tr>
+        <tr>
+            <td>
+                <%
+                var r = 0;
+                for (var i = 0; i < 31; i++){
+                r += parseInt(allDownloads.result[i]) ? parseInt(allDownloads.result[i]) : 0;
+                }
+                %>
+                <%=r%>
+            </td>
+            <td>&nbsp;</td>
+            <td>downloads in the last month</td>
+        </tr>
+    </table>
+    <p class='dgr ma'>Any package can be installed by using <a class='g'>fpm
+        install</a>.</p>
+
+    <p class='dgr ma'>Add your programs to this index by using <a class='g'>fpm
+        publish</a>.</p>
+    <p>&nbsp;</p>
+    <table id='t2'>
+        <tr>
+            <td>Recently Updated
+                <ul>
+                    <li>time | name</li>
+                    <% for (var i = 0; i < updateRecent.result.length; i++){ %>
+                    <li>
+                        <a class='mgr nb'>
+                            <%=Math.floor(((new Date().getTime()) - parseInt(updateRecent.result[i].updatetime))/60000) %>
+                            m</a>
+                        <a class='g' href='/pmodules/<%=updateRecent.result[i].modulesname %>'>
+                            <%=updateRecent.result[i].modulesname %>
+                        </a>
+                    </li>
+                    <%}%>
+                </ul>
+            </td>
+            <td>Most Install
+                <ul>
+                    <li>downloads | name</li>
+                    <% for (var i = 0; i < mostInstall.result.length; i++){ %>
+                    <li>
+                    <a class='mgr nb'>(<%=mostInstall.result[i].downloadtime %>)</a>
+                    <a class='g' href='/pmodules/<%=mostInstall.result[i].modulesname %>'>
+                    <%=mostInstall.result[i].modulesname %>
+                    </a>
+                    </li>
+                    <%}%>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Most Starred
+                <ul>
+                    <li>stars | name</li>
+                    <% for (var i = 0; i < mostStarred.result.length; i++){ %>
+                    <li>
+                        <a class='mgr nb'>(<%=mostStarred.result[i].starlength %>)</a>
+                        <a class='g' href='/pmodules/<%=mostStarred.result[i].modulesname %>'>
+                            <%=mostStarred.result[i].modulesname %>
+                        </a>
+                    </li>
+                    <%}%>
+                </ul>
+            </td>
+            <td>Famous Author
+                <ul>
+                    <% for (var i = 0; i < famousPeople.result.length; i++){ %>
+                    <li><a class='g' href='/pprofile/<%=famousPeople.result[i] %>'><%=famousPeople.result[i] %></a></li>
+                    <%}%>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</script>
+</body>
+<script src="/static/js/jquery-2.1.0.min.js"></script>
+<script src="/static/js/underscore-min.js"></script>
+<script src="/static/js/backbone-min.js"></script>
+<script src="/static/js/index.js"></script>
+<script src='/static/js/status.js'></script>
+</html>  

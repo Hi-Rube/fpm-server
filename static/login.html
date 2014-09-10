@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>fpm</title>
+    <link rel="icon" href="http://res.baoz.cn/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="http://res.baoz.cn/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon-precomposed" href="http://res.baoz.cn/icon.png"/>
+    <link rel="stylesheet" href="/static/css/index.css"/>
+</head>
+<body>
+<div id='img_title'>
+    <img src='/static/img/index.jpg'>
+
+    <div id='header'>
+        <img src='/static/img/logo.png'
+             style="width: 200px; height: 78px; vertical-align: middle">
+
+        <div id='header_search'>
+            <form action="/psearch" method="get">
+                <input name='module' type="text">
+            </form>
+        </div>
+    </div>
+</div>
+<div id='wrap'>
+    <div id="cen">
+        <div id="fpm_item">
+            <ul>
+                <li><a href='/' class='mgr nb'>HOME</a></li>
+                <li><a href='http://hirube.com/tagged/fpm' class='mgr nb' target="_blank">BLOG</a></li>
+                <li>FPM</li>
+                <li>API</li>
+            </ul>
+        </div>
+        <div id="fpm_modules">
+            <div id='title'>
+                Fpm Account Login
+            </div>
+            <p class='ma'></p>
+            <table style='margin: 0 auto'>
+                <tr>
+                    <td class='gr'>Username</td>
+                    <td><input type='text' id='f1'></td>
+                </tr>
+                <tr>
+                    <td class='gr'>Password</td>
+                    <td><input type='password' id='f2'></td>
+                </tr>
+            </table>
+            <p class="ma"></p>
+            <p class='r m macenter60' id='notice'>&nbsp;</p>
+            <p class='un macenter60'></p>
+            <p class="ma"></p>
+            <button class="btn mal120   " id='sign'>Make it so.</button>
+        </div>
+        <div id="fpm_user">
+            <div id='user_block'>
+                <img src="/static/img/none.png"
+                     style="width:50px; height: 50px;">
+
+                <div id='user_info'>
+                    <a class="g s" href='/psignup'>Create Account</a>
+                    <a class="g s bl" href='/plogin'>Login</a>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+</div>
+<div id='footer'>
+    <div id='footer_cen'>
+        <a href='/'><img src='/static/img/logo.png' style='float: left'></a>
+        <a href='/'><img src='http://4.as.baoz.cn/f/caeee826765b763b68f138ab93386e03.t180x180.jpg' style='float: left'></a>
+        <ul class='hul' style='float:left'>
+            <li><a class='g' href='http://prj.baoz.cn/docs/fibjs/' target="_blank">fibjs</a></li>
+            <li><a class='g' href='http://hirube.com/tagged/fpm' target="_blank">blog</a></li>
+            <li><a class='g'>status</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+<script src="/static/js/jquery-2.1.0.min.js"></script>
+<script src="/static/js/underscore-min.js"></script>
+<script src="/static/js/backbone-min.js"></script>
+<script src="/static/js/login.js"></script>
+</html>  

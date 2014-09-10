@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>fpm</title>
+    <link rel="icon" href="http://res.baoz.cn/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="http://res.baoz.cn/favicon.ico"
+          type="image/x-icon"/>
+    <link rel="apple-touch-icon-precomposed"
+          href="http://res.baoz.cn/icon.png"/>
+    <link rel="stylesheet" href="/static/css/index.css"/>
+</head>
+<body>
+<div id='img_title'>
+    <img src='/static/img/index.jpg'>
+
+    <div id='header'>
+        <img src='/static/img/logo.png'
+             style="width: 200px; height: 78px; vertical-align: middle">
+
+        <div id='header_search'>
+            <form action="/psearch" method="get">
+                <input name='module' type="text">
+            </form>
+        </div>
+    </div>
+</div>
+<div id='wrap'>
+    <div id="cen">
+        <div id="fpm_item">
+            <ul>
+                <li><a href='/' class='mgr nb'>HOME</a></li>
+                <li><a href='http://hirube.com/tagged/fpm' class='mgr nb' target="_blank">BLOG</a></li>
+                <li>FPM</li>
+                <li>API</li>
+            </ul>
+        </div>
+        <div id="fpm_modules">
+            <div id='title' style='text-align: left;'>
+                Modules
+            </div>
+            <p class='un ma'></p>
+
+            <p class='ma'></p>
+
+            <div id='content'>
+
+            </div>
+        </div>
+        <div id="fpm_user">
+            <div id='user_block'>
+                <img src="/static/img/none.png"
+                     style="width:50px; height: 50px;">
+
+                <div id='user_info'>
+                    <a class="g s" href='/psignup'>Create Account</a>
+                    <a class="g s bl" href='/plogin'>Login</a>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+</div>
+<div id='footer'>
+    <div id='footer_cen'>
+        <a href='/'><img src='/static/img/logo.png' style='float: left'></a>
+        <a href='/'><img
+                src='http://4.as.baoz.cn/f/caeee826765b763b68f138ab93386e03.t180x180.jpg'
+                style='float: left'></a>
+        <ul class='hul' style='float:left'>
+            <li><a class='g' href='http://prj.baoz.cn/docs/fibjs/' target="_blank">fibjs</a></li>
+            <li><a class='g' href='http://hirube.com/tagged/fpm' target="_blank">blog</a></li>
+            <li><a class='g'>status</a></li>
+        </ul>
+    </div>
+</div>
+<script type='text/template' id='modules_info'>
+    <ul class='noneul'>
+        <% for (var i=0; i < (result.length > 10 ? 10 : result.length); i++){
+        var m = result[i]["version"][0]['modulesInfo'];
+        %>
+        <li style='position:relative'>
+            <p style='width:70%'>
+                <a class='g' href='/pmodules/<%=m["name"] %>'><%=m["name"]
+                    %></a>
+            </p>
+            <ul class='hnul'
+                style='right:0; display:block; width:30%; position:absolute; top:0; text-align:right'>
+                <li>
+                    <span class='gr'><%=result[i]['downloadtime'] %></span>
+                    <span><img style='width:10px'
+                               src='/static/img/icon_download.png'></span>
+                </li>
+                <li>
+                    <span class='gr'><%=result[i]['starlength'] %></span>
+                    <span style='color:#f7c138'>★</span>
+                </li>
+            </ul>
+            <p class='ma mgr' style='padding:10px;'>
+                <%=m['description']%>
+            </p>
+
+            <div style='margin-bottom:80px'>
+                <div class='g nb s' style='float:left'><%=m['keywords'] %></div>
+                <div class='mgr' style='float:right'><%=m['version']%> by <a
+                        class='g' href='/pprofile/<%=result[i]["username"]%>'><%=result[i]['username']%></a>
+                </div>
+            </div>
+        </li>
+        <p class='un'></p>
+        <% } %>
+    </ul>
+    <p>
+        <% if (result.length > 10){%>
+        <a class='g'>page: </a><input type='text' style='width:20px; text-align:center' id='gon'>
+        <button class='btn' id='go'>go</button>
+        <% }%>
+    </p>
+</script>
+</body>
+<script src="/static/js/jquery-2.1.0.min.js"></script>
+<script src="/static/js/underscore-min.js"></script>
+<script src="/static/js/backbone-min.js"></script>
+<script src="/static/js/index.js"></script>
+<script src="/static/js/search.js"></script>
+</html>  
