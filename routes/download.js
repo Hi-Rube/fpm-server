@@ -46,8 +46,8 @@ var versionAnalyze = function (version) {
     }
   }
   return {
-    v: 0,
-    t: -2
+    v: version,
+    t: 0
   }
 }
 
@@ -104,6 +104,7 @@ var action = function (r) {
     return;
   }
   var v = versionAnalyze(r.query['v']);
+  console.log(v);
   var q = {"modulesname": moduleName};
   var module = collection.find(q, {'version.modulesInfo.version': 1, 'version.modulespath': 1}).toArray();
   if (module.length != 0) {
