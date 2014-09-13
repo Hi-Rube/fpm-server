@@ -1,14 +1,14 @@
 {
-  "name": "fpm-server-release",
-  "version": "2.5",
-  "description": "dongyiweide lalala",
-  "keywords": ["good", "server", "2", "3", "4", "5", "6", "7", "8", "9"],
+  "name": "fpm-server",
+  "version": "0.1",
+  "description": "fpm-server",
+  "keywords": ["fpm", "server", "www", "website"],
   "homepage": "http://www.hirube.com",
   "bugs": {
     "url": "http://www.hitube.com",
     "email": "353371737@qq.com"
   },
-  "license": "MIT",
+  "license": "GPL",
   "licenses": [
     {
       "type": "",
@@ -27,11 +27,6 @@
       "name": "rube",
       "url": "",
       "email": "353371737@qq.com"
-    },
-    {
-      "name": "rube",
-      "url": "",
-      "email": "353371737@qq.com"
     }
   ],
   "contributors": {
@@ -40,7 +35,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http:www"
+    "url": "https://github.com/Hi-Rube/fpm-server"
   },
   "private": false,
   "scripts": {
@@ -55,6 +50,5 @@
     "example": ""
   },
   "dependencies": {
-    "fpm-server": "1.x"
   }
 }
