@@ -18,6 +18,8 @@ $(document).ready(function () {
   });
   ModuleView = Backbone.View.extend({
     render: function (info) {
+      console.log($("#module_info").html());
+      console.log(info);
       var template = _.template($("#module_info").html(), info);
       $("#content").html(template);
     }
